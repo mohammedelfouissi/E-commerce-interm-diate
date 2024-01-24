@@ -9,10 +9,11 @@ export const Usersprov=createContext(null)
 
 function App() {
  const [Users,SetUsers]=useState([]);
+ const [logged,SetLogged]=useState(false)
 
   return (
-    <Usersprov.Provider value={{ Users, SetUsers }}>
-    
+    <Usersprov.Provider value={{ Users, SetUsers,logged,SetLogged }}>
+        
         <Routes>
           <Route path="/" element={<Nav />} />
           <Route path="/register" element={<Registerform />} />

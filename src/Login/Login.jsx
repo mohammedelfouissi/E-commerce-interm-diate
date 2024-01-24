@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { Usersprov } from '../App';
-import { Link, Navigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 
 function Login() {
   const { Users } = useContext(Usersprov);
   const { SetUsers } = useContext(Usersprov);
+  const { SetLogged } = useContext(Usersprov);
   const [Email, SetEmail] = useState('');
   const [Pass, SetPass] = useState('');
-  const [loged, setLoged] = useState(false);
-
+  const [error,SetError]=useState('')
+  const navigate=useNavigate()
+  useEffect(()=>{
+     fetch('http://localhost:3001/Users').then(reponse=>reponse.json()).then(res=>SetUsers(res))
+  
+  },[])
   const handlesubmit = (e) => {
     e.preventDefault();
     const Userfound = Users.find((user) => user.email === Email && user.pass === Pass);
     if (Userfound) {
-      setLoged(true);
+     navigate('/')
+     SetLogged(true)
     }
-    if (loged) {
-        return <Navigate to="/" />;
-      }
-    
+    else{
+       SetError("Incorrect Email or Password")
+    }
   };
 
  
@@ -69,9 +74,11 @@ function Login() {
           />
           <br />
         </div>
+        {error&& <div class="alert alert-danger" role="alert">{error}</div>}
         <button className="btn btn-primary me-2 px-2" type="submit">
           Login
         </button>
+        
         <div id="emailHelp" className="form-text">
           Don't have an account? |{' '}
           <span>
