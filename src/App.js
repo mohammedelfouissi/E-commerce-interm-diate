@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { createContext, useState } from 'react';
+import Nav from './Navigation/Nav';
+import Registerform from './Reagistation/Registerform';
+import { Routes, Route } from "react-router-dom";
+import Login from './Login/Login';
+ 
+export const Usersprov=createContext(null)
 
 function App() {
+ const [Users,SetUsers]=useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Usersprov.Provider value={{ Users, SetUsers }}>
+    
+        <Routes>
+          <Route path="/" element={<Nav />} />
+          <Route path="/register" element={<Registerform />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+    
+    </Usersprov.Provider>
   );
 }
 
