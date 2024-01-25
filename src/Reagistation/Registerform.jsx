@@ -67,12 +67,12 @@ const handleSubmit = async (e) => {
         <div className="mb-3">
         <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
         <label htmlFor="email" className='form-label'>Email:</label><br />
-        <input type="email" value={state.email} id="email" name="email" className="form-control" placeholder='Enter your email' onChange={(e)=>{dispatch({type:'setemail',payload:e.target.value})}}/><br />
+        <input type="email" value={state.email} id="email" name="email" className="form-control" placeholder='Enter your email' required onChange={(e)=>{dispatch({type:'setemail',payload:e.target.value})}}/><br />
   
         </div>
         <div className="mb-3">
         <label htmlFor="pass" className='form-label'>Password:</label><br />
-        <input type="password" value={state.pass} id="pass" name="pass" className="form-control" placeholder='Enter your password' onChange={(e)=>{dispatch({type:'setpass',payload:e.target.value})}}/><br />
+        <input type="password" value={state.pass} id="pass" name="pass" className="form-control" placeholder='Enter your password' required onChange={(e)=>{dispatch({type:'setpass',payload:e.target.value})}}/><br />
         </div>
         <button className="btn btn-primary me-2 px-4" type='submit'> Register</button>
         <div id="emailHelp" className="form-text">have account all ready | <span><Link to="/login">Login</Link></span></div>

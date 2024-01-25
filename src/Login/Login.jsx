@@ -49,7 +49,7 @@ function Login() {
           name="email"
           className="form-control"
           value={Email}
-          placeholder="Enter your email"
+          placeholder="Enter your email" required
           onChange={(e) => {
             SetEmail(e.target.value);
           }}
@@ -67,7 +67,7 @@ function Login() {
             name="pass"
             className="form-control"
             value={Pass}
-            placeholder="Enter your password"
+            placeholder="Enter your password" required
             onChange={(e) => {
               SetPass(e.target.value);
             }}
